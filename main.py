@@ -3,15 +3,21 @@ def get_book_text(file):
     with open(file) as str:
         return str.read()    
 
+import sys 
 from stats import count_words, count_chars, order_letters
 
-text = get_book_text("/home/rostgsd/workspace/github.com/personal/bookbot/books/frankenstein.txt")
+if len(sys.argv) < 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+book_path = sys.argv[1]
+
+text = get_book_text(book_path)
 word_count = count_words(text)
 char_counts = order_letters(count_chars(text))
 
 def report():
     print( '============ BOOKBOT ============')
-    print('Analyzing book found at books/frankenstein.txt...')
+    print(f'Analyzing book found at {book_path}...')
     print('----------- Word Count ----------')
     print(f'Found {word_count} total words')
     print('--------- Character Count -------')
