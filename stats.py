@@ -39,4 +39,15 @@ def count_chars(text):
             letters_dict[character] += 1
     return letters_dict
 
+def order_letters(letters): # dict
+    # create a list of dicts 'cache' for compatibility
+    cache = []
+    for letter in letters:
+        cache.append({ 'letter':letter, 'freq':letters[letter]})
+    # carrier function
+    def sort_on(dict):
+        return dict["freq"]
+    # sort cache and return
+    cache.sort(reverse=True, key=sort_on)
+    return cache
 
